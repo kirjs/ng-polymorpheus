@@ -32,6 +32,13 @@ export class PolymorpheusOutletComponent<C extends object> implements DoCheck, O
     @ViewChild(NgComponentOutlet)
     readonly outlet?: NgComponentOutlet;
 
+    readonly proxy = new Proxy(
+        {},
+        {
+            get: (_, key) => this.context[key as keyof C],
+        },
+    );
+
     @Input()
     content: PolymorpheusContent<C> | null = null;
 
