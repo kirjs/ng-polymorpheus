@@ -32,12 +32,7 @@ export class PolymorpheusOutletComponent<C extends object> implements DoCheck, O
     @ViewChild(NgComponentOutlet)
     readonly outlet?: NgComponentOutlet;
 
-    readonly proxy = new Proxy(
-        {},
-        {
-            get: (_, key) => this.context[key as keyof C],
-        },
-    );
+    proxy?: C;
 
     @Input()
     content: PolymorpheusContent<C> | null = null;
@@ -85,6 +80,12 @@ export class PolymorpheusOutletComponent<C extends object> implements DoCheck, O
     }
 
     ngOnChanges({content, context}: SimpleChanges) {
+        if (context && this.proxy === undefined) {
+            this.proxy = new Proxy(this.context, {
+                get: (_, key) => this.context[key as keyof C],
+            });
+        }
+
         // TODO: Keep an eye on private field, name can change
         const componentRef = (!content &&
             context &&
