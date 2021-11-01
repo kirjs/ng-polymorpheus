@@ -81,9 +81,12 @@ export class PolymorpheusOutletComponent<C extends object> implements DoCheck, O
 
     ngOnChanges({content, context}: SimpleChanges) {
         if (context && this.proxy === undefined) {
-            this.proxy = new Proxy(this.context, {
-                get: (_, key) => this.context[key as keyof C],
-            });
+            this.proxy =
+                typeof this.context === 'object' && Array.isArray(this.context)
+                    ? new Proxy(this.context, {
+                          get: (_, key) => this.context[key as keyof C],
+                      })
+                    : this.context;
         }
 
         // TODO: Keep an eye on private field, name can change
