@@ -34,18 +34,18 @@ It abstracts over different ways of view customization in Angular with one simpl
 
 ## Quick start
 
-``` 
+```bash
 npm i @tinkoff/ng-polymorpheus
 ```
 
 Add to you NgModule:
 
-```
+```TypeScript
 import { PolymorpheusModule } from '@tinkoff/ng-polymorpheus';
 
 @NgModule({
     imports: [
-        // ..
+        // ...
         PolymorpheusModule,
     ]
 })
