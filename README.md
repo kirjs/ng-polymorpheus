@@ -30,6 +30,14 @@ It abstracts over different ways of view customization in Angular with one simpl
 
 **Context** is optional when you need your **content** to adapt to the situation
 
+
+
+## Quick start
+
+``` 
+npm i @tinkoff/ng-polymorpheus
+```
+
 ## How to use it?
 
 Typical use case would be a component that accepts visual customization and defines
