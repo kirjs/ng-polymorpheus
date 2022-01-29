@@ -38,6 +38,21 @@ It abstracts over different ways of view customization in Angular with one simpl
 npm i @tinkoff/ng-polymorpheus
 ```
 
+Add to you NgModule:
+
+```
+import { PolymorpheusModule } from '@tinkoff/ng-polymorpheus';
+
+@NgModule({
+    imports: [
+        // ..
+        PolymorpheusModule,
+    ]
+})
+AmazingModule {}
+
+```
+
 ## How to use it?
 
 Typical use case would be a component that accepts visual customization and defines
